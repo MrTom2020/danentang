@@ -4,7 +4,6 @@ import Animated from 'react-native-reanimated';
 import {Container, ListItem, CheckBox, Body, Right} from 'native-base';
 import Card from './Parts/Card';
 import Empty from './Parts/Empty';
-
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteTransaction} from '../store/actions/transactionAction';
 
@@ -50,10 +49,12 @@ function Item({title,price,id})
   );
 }
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) =>
+{
   const {transactions} = useSelector((state) => state.transactions);
-
+  
   return (
+    
     <Container>
       <Animated.View
         style={{
@@ -75,7 +76,7 @@ const HomeScreen = ({navigation}) => {
             keyExtractor={(item) => item.id.toString()}
           />
         ) : (
-          <Empty />
+            <Empty />
         )}
       </View>
     </Container>

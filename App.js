@@ -10,23 +10,35 @@ import AddTransaction from './src/Component/AddTransaction';
 
 const Stack = createStackNavigator();
 
-function App()
-{
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
-           <Stack.Screen name="Home1" component={LoginApp} options={{
-            title:'Trình theo dõi chi phí'
-          }}/>
-          <Stack.Screen name="Home" component={HomeScreen} options={{
-            title:'Trình theo dõi chi phí'
-          } }/>
-        <Stack.Screen name="Add" component={AddTransaction}options={{
-         title:"Thêm chi phí" }}/>
-      </Stack.Navigator>
-      </NavigationContainer>
-      </Provider>
-  );
+function App() {
+	return (
+		<Provider store={store}>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="Home1"
+						component={LoginApp}
+						options={{
+							title: 'Trình theo dõi chi phí'
+						}}
+					/>
+					<Stack.Screen
+						name="Home"
+						component={HomeScreen}
+						options={{
+							title: 'Trình theo dõi chi phí'
+						}}
+					/>
+					<Stack.Screen
+						name="Add"
+						component={AddTransaction}
+						options={{
+							title: "Thêm chi phí"
+						}}
+					/>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Provider>
+	);
 }
 export default App;

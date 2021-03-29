@@ -72,7 +72,7 @@ const HomeScreen = ({navigation}) => {
             renderItem={({item}) => (
               <Item title={item.title} price={item.price} id={item.id} />
             )}
-            keyExtractor={(item) => 1}
+            keyExtractor={(item) => item.id.toString()}
           />
         ) : (
           <Empty />

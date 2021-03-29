@@ -2,7 +2,6 @@
 import { applyMiddleware, compose, createStore } 
 from "redux";
 import thunk from "redux-thunk";
-import reducers from "@redux";
 import { createNetworkMiddleware,
   offlineActionCreators ,
   checkInternetConnection} from 'react-native-offline';
@@ -41,4 +40,3 @@ const configureStore = () => {
 };
 
 export default configureStore();
-© 2021 GitHub, Inc.

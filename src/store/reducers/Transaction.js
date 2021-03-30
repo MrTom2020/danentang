@@ -18,6 +18,8 @@ export default (state = initialState, {type, payload}) => {
     case LOGIN_APP:
       return {
         ...state,
+        transactions: [payload,...state.transactions]
+        
       };
     case ADD_TRANSACTION:
       return {

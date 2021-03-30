@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { Provider } from 'react-redux';
 import store from './src/store';
+import LoginApp from './src/Component/LoginApp';
 import HomeScreen from './src/Component/HomeScreen';
 import AddTransaction from './src/Component/AddTransaction';
 const Stack = createStackNavigator();
@@ -13,6 +14,13 @@ function App() {
 		<Provider store={store}>
 			<NavigationContainer>
 				<Stack.Navigator>
+					<Stack.Screen
+						name="Home2"
+						component={LoginApp}
+						options={{
+							title: 'Đăng nhập'
+						}}
+					/>
 					<Stack.Screen
 						name="Home"
 						component={HomeScreen}

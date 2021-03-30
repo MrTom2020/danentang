@@ -11,11 +11,11 @@ export const addTransaction = ({ id, title, price }) => (dispatch) => {
 };
 export const LoginApp = ({ username, password }) => (dispatch) =>
 {
-    const newTransaction2 = {
+    const newTransaction= {
         username,
         password
     };
-    dispatch({ type: LOGIN_APP, payload: newTransaction2 });
+    dispatch({ type: LOGIN_APP, payload: newTransaction });
 };
 export const deleteTransaction = (id) => (dispatch) =>
 {

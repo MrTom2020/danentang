@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
-import {Button, Form,Item, Input} from 'native-base';
+import {Button, Form,Item, Input, Label} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {LoginApp} from '../../store/actions/transactionAction';
 import {useDispatch} from 'react-redux';
-const sign = () => {
+const sign = ({navigation}) => {
     const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -12,7 +12,11 @@ const sign = () => {
     const onSubmit = () => {
         if (!username || !password) {
             return alert('Vui lòng điền vào tất cả các ô');
-        }
+      }
+        else
+        {
+          return navigation.navigate('Home');
+          }
         const newTransaction2 = 
         {
           username,
@@ -25,7 +29,8 @@ const sign = () => {
             colors={['#FAAD3D', '#EFC90A', '#F1CB0C']}
             style={styles.Box}>
             <View style={{ width: '100%', alignItems: 'flex-start' }}>
-                <Form>
+          <Form>
+            <Label style={{marginLeft:'30%',fontSize:20}}>Đăng nhập</Label>
           <Item style={{...styles.item}}>
             <Input
               placeholder="Xin mời nhập tên tài khoản"
@@ -39,7 +44,7 @@ const sign = () => {
               onSubmitEditing={onSubmit}
             />
           </Item>
-          <Button block onPress={onSubmit} style={{marginHorizontal: 20}}>
+            <Button block onPress={onSubmit} style={{ marginHorizontal: 20 }}>
             <Text style={{color: '#fff', fontWeight: '700', fontSize: 16}}>
              Đồng ý
             </Text>

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './src/store';
 import LoginApp from './src/Component/LoginApp';
 import HomeScreen from './src/Component/HomeScreen';
+import Mainn from './src/Component/Mainn';
 import AddTransaction from './src/Component/AddTransaction';
 const Stack = createStackNavigator();
 
@@ -19,6 +20,13 @@ function App() {
 						component={LoginApp}
 						options={{
 							title: 'Đăng nhập'
+						}}
+					/>
+					<Stack.Screen
+						name="Main"
+						component={Mainn}
+						options={{
+							title: 'Trang chính'
 						}}
 					/>
 					<Stack.Screen

@@ -1,18 +1,21 @@
 import React from 'react';
-import {View, Text, FlatList, Alert,StyleSheet} from 'react-native';
+import {View, Text, FlatList, Alert} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container, ListItem, CheckBox, Body, Right} from 'native-base';
-import Card2 from './Login/sign';
-
+import Card from './Main/main';
+import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
+import {deleteTransaction} from '../store/actions/transactionAction';
 
-const HomeScreen = ({ navigation }) =>
+
+
+const Mainn = ({ navigation }) =>
 {
   const {transactions} = useSelector((state) => state.transactions);
   
   return (
     
-    <Container style={{...styles.backgroundLogin}}>
+    <Container style={{backgroundColor:'#333333'}}>
       <Animated.View
         style={{
           flex: 1,
@@ -20,15 +23,10 @@ const HomeScreen = ({ navigation }) =>
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <Card2 navigation={navigation} />
+        <Card navigation={navigation} />
       </Animated.View>
     </Container>
   );
 };
-const styles= StyleSheet.create({
-  backgroundLogin:{
-    backgroundColor:'#333333'
-  }
 
-});
-export default HomeScreen;
+export default Mainn;

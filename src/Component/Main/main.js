@@ -2,28 +2,9 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
 import {Button, Form,Item, Input, Label} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {LoginApp} from '../../store/actions/transactionAction';
 import {useDispatch} from 'react-redux';
-const sign = ({navigation}) => {
+const main = ({navigation}) => {
     const dispatch = useDispatch();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    const onSubmit = () => {
-        if (!username || !password) {
-            return alert('Vui lòng điền vào tất cả các ô');
-      }
-        else
-        {
-          return navigation.navigate('Main');
-          }
-        const newTransaction2 = 
-        {
-          username,
-          password
-        };
-        dispatch(LoginApp({ ...newTransaction2}));
-    };
     return (
         <LinearGradient
             colors={['#89fc03', '#aefb55', '#d9fdb0']}
@@ -67,4 +48,4 @@ const styles = StyleSheet.create({
     width:'100%'
   },
     });
-export default sign;
+export default main;

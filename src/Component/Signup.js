@@ -2,15 +2,16 @@ import React from 'react';
 import {View, Text,StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container, ListItem, CheckBox, Body, Right} from 'native-base';
-import Card2 from './Login/sign';
+import Card2 from './signupuser/signup';
 
 import {useSelector, useDispatch} from 'react-redux';
 
-const LoginApp = ({ navigation }) =>
+const Signup = ({ navigation }) =>
 {
   const {transactions} = useSelector((state) => state.transactions);
   
-  return (  
+  return (
+    
     <Container style={{...styles.backgroundLogin}}>
       <Animated.View
         style={{
@@ -30,4 +31,4 @@ const styles= StyleSheet.create({
   }
 
 });
-export default LoginApp;
+export default Signup;

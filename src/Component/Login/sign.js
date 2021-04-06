@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TextInput,FlatList} from 'react-native';
+import {StyleSheet, View, Text, TextInput,FlatList, Alert,ActivityIndicator} from 'react-native';
 import {Button, Form,Item, Input, Label} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {LoginApp} from '../../store/actions/transactionAction';
+
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
+import auth from '@react-native-firebase/auth';
 const sign = ({navigation}) => 
 {
   
@@ -12,6 +14,9 @@ const sign = ({navigation}) =>
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     var ss = firebaseApp.database().ref('lili');
+  
+    
+    /*
     this.itemRef =  firebaseApp.database().ref('lili');
     this.itemRef.set({
       TaiKhoan:{
@@ -25,13 +30,34 @@ const sign = ({navigation}) =>
         }
       }
     });
-   
-   
+    const  readUserData=()=> {
+      firebaseApp.database().ref('lili').child('TaiKhoan').child('hiep').on('value', function (snapshot) {
+          console.log(snapshot.val())
+      });*/
+  //}
     const onSubmit = () => 
     {
-    
+      if(!username || !password)
+      {
+        return alert("Xin vui lòng điền đầy đủ thông tin");
+      }
+      else
+      {
+        firebaseApp
+        .auth().signInWithEmailAndPassword(username, password).then(() => {
+          Alert.alert(
+            'Xac nhan',
+            'okk'
+          )
+        }).catch((e)=> {
+          Alert.alert('Thong bao', e.toString())
+        })
+      }
     };
-   
+   const dktaikhoan =()=>
+   {
+    return navigation.navigate('signup');
+   };
     return (
         <LinearGradient
             colors={['#89fc03', '#aefb55', '#d9fdb0']}
@@ -57,10 +83,13 @@ const sign = ({navigation}) =>
              Đồng ý
             </Text>
           </Button>
+          <Button block onPress={dktaikhoan} style={{ marginHorizontal: 20,backgroundColor:'#333333' }}>
+          <Text style={{color: '#fff', fontWeight: '700', fontSize: 16}}>
+             Đăng ký tài khoản
+            </Text>
+          </Button>
         </Form>
-            </View>
-
-     
+            </View> 
         </LinearGradient>
     );
     

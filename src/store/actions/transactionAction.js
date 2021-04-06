@@ -1,5 +1,5 @@
 import { Alert } from 'react-native';
-import {ADD_TRANSACTION, DELETE_TRANSACTION,LOGIN_APP} from './types';
+import {ADD_TRANSACTION, DELETE_TRANSACTION,LOGIN_APP,SIGNUPUSER} from './types';
 
 export const addTransaction = ({ id, title, price }) => (dispatch) => {
     const newTransaction = {
@@ -16,6 +16,18 @@ export const LoginApp = ({ username, password }) => (dispatch) =>
         password
     };
     dispatch({ type: LOGIN_APP, payload: newTransaction });
+};
+export const sIGNUPUSER = ({ hoten,matkhau, quequan, ngaysinh,diachi,sdt,cmnd }) => (dispatch) => {
+    const newTransaction = {
+        hoten,
+        matkhau,
+         quequan, 
+         ngaysinh,
+         diachi,
+         sdt,
+         cmnd
+    };
+    dispatch({ type: SIGNUPUSER, payload: newTransaction });
 };
 export const deleteTransaction = (id) => (dispatch) =>
 {

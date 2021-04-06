@@ -8,6 +8,7 @@ import LoginApp from './src/Component/LoginApp';
 import HomeScreen from './src/Component/HomeScreen';
 import Mainn from './src/Component/Mainn';
 import AddTransaction from './src/Component/AddTransaction';
+import signup from './src/Component/Signup'; 
 const Stack = createStackNavigator();
 
 function App() {
@@ -20,6 +21,13 @@ function App() {
 						component={LoginApp}
 						options={{
 							title: 'Đăng nhập'
+						}}
+					/>
+					<Stack.Screen
+						name="signup"
+						component={signup}
+						options={{
+							title: 'Đăng ký tài khoản'
 						}}
 					/>
 					<Stack.Screen

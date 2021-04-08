@@ -37,7 +37,7 @@ const Balance = ({navigation}) => {
             color: '#fff',
             fontWeight: '700',
           }}>
-          VNĐ{totalPrice}
+          {totalPrice}VNĐ
         </Text>
 
         <Text

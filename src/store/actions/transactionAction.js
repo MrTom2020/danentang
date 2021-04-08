@@ -9,11 +9,12 @@ export const addTransaction = ({ id, title, price }) => (dispatch) => {
     };
     dispatch({ type: ADD_TRANSACTION, payload: newTransaction });
 };
-export const LoginApp = ({ username, password }) => (dispatch) =>
+export const LoginApp = ({ username, password,userid }) => (dispatch) =>
 {
     const newTransaction= {
         username,
-        password
+        password,
+        userid
     };
     dispatch({ type: LOGIN_APP, payload: newTransaction });
 };

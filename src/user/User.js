@@ -4,7 +4,7 @@ import {Button, Form,Item, Input, Label} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
-const signup = ({navigation}) => 
+const User = ({navigation}) => 
 {
   /* hoten, quequan, ngaysinh,diachi,sdt,cmnd*/
     const dispatch = useDispatch();
@@ -146,4 +146,4 @@ const styles = StyleSheet.create({
     width:'100%',
   },
     });
-export default signup;
+export default User;

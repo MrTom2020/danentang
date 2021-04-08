@@ -1,16 +1,21 @@
 import React from 'react';
 import {View, Text, FlatList, Alert} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {Container, ListItem, CheckBox, Body, Right} from 'native-base';
+import {Container, ListItem, CheckBox, Body, Right,Left} from 'native-base';
 import Card from './Parts/Card';
 import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteTransaction} from '../store/actions/transactionAction';
+import {
+  NavigationContainer,
+  DarkTheme,
+  DrawerActions
+} from '@react-navigation/native';
 
 function Item({title,price,id})
  {
   const dispatch = useDispatch();
-
+ 
   return (
     <View
       style={{
@@ -27,21 +32,18 @@ function Item({title,price,id})
           checked={true}
         />
 
-        <Body>
-          <Text style={{fontSize: 17, fontWeight: '700', marginLeft: 10}}>
+        <Left>
+          <Text style={{fontSize: 17, fontWeight: '700', marginLeft: 20}}>
             {title}
           </Text>
-        </Body>
+        </Left>
 
         <Right>
           <Text
-            style={{
-              fontFamily: 'Lato-Bold',
-              fontSize: 14,
-              fontWeight: '400',
+            style={{fontSize: 12, fontWeight: '700', marginLeft: -100,
               color: price > 0 ? '#009BFC' : '#ff4500',
             }}>
-            {price > 0 ? `{price}VNĐ$` : `{Math.abs(price)}VNĐ$`}
+            {price > 0 ? `${price}VNĐ` : `${Math.abs(price)}VNĐ`}
           </Text>
         </Right>
       </ListItem>
@@ -73,7 +75,7 @@ const HomeScreen = ({ navigation }) =>
             renderItem={({item}) => (
               <Item title={item.title} price={item.price} id={item.id} />
             )}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id}
           />
         ) : (
             <Empty />

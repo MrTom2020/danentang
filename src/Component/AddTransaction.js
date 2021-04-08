@@ -4,13 +4,15 @@ import {Container, Button, Content, Form, Item, Input} from 'native-base';
 import {addTransaction} from '../store/actions/transactionAction';
 import {useDispatch} from 'react-redux';
 
-const AddTransaction = () => {
+const AddTransaction = ({navigation}) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
 
-  const onSubmit = () => {
-    if (!title || !price) {
+  const onSubmit = () =>
+   {
+    if (!title || !price)
+     {
       return alert('Vui lòng điền vào tất cả các ô');
     }
 
@@ -22,6 +24,7 @@ const AddTransaction = () => {
       price: +price,
     };
     dispatch(addTransaction({...newTransaction}));
+    return navigation.goBack();
   };
 
   return (

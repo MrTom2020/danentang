@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, FlatList, Alert} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container, ListItem, CheckBox, Body, Right,Left} from 'native-base';
 import Card from './Parts/Card';
 import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteTransaction} from '../store/actions/transactionAction';
+import {deleteTransaction,LoginApp} from '../store/actions/transactionAction';
 import {
   NavigationContainer,
   DarkTheme,
@@ -15,7 +15,6 @@ import {
 function Item({title,price,id})
  {
   const dispatch = useDispatch();
- 
   return (
     <View
       style={{
@@ -51,10 +50,12 @@ function Item({title,price,id})
   );
 }
 
-const HomeScreen = ({ navigation }) =>
+const HomeScreen = ({ navigation,route }) =>
 {
   const {transactions} = useSelector((state) => state.transactions);
-  
+  const [password, setPassword] = useState('123456789');
+  const [username, setUsername] = useState('t@gmail.com');
+  const [userd,setuserd] = useState(route.params.userd);
   return (
     
     <Container>
@@ -65,7 +66,7 @@ const HomeScreen = ({ navigation }) =>
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <Card navigation={navigation} />
+        <Card dataFromParent={userd}k1={username} navigation={navigation}  />
       </Animated.View>
 
       <View style={{flex: 1, marginTop: -150}}>
@@ -73,7 +74,7 @@ const HomeScreen = ({ navigation }) =>
           <FlatList
             data={transactions}
             renderItem={({item}) => (
-              <Item title={item.title} price={item.price} id={item.id} />
+              <Item key={item.id} title={item.title} price={item.price} id={item.id} />
             )}
             keyExtractor={(item) => item.id}
           />

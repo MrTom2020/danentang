@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, Alert} from 'react-native';
 import {Container, Button, Content, Form, Item, Input} from 'native-base';
-import {addTransaction} from '../store/actions/transactionAction';
+import {addTransaction,LoginApp} from '../store/actions/transactionAction';
 import {useDispatch} from 'react-redux';
 
 const AddTransaction = ({navigation}) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-
   const onSubmit = () =>
    {
     if (!title || !price)
@@ -24,6 +23,7 @@ const AddTransaction = ({navigation}) => {
       price: +price,
     };
     dispatch(addTransaction({...newTransaction}));
+   // Alert.alert();
     return navigation.goBack();
   };
 

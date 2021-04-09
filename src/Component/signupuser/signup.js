@@ -26,9 +26,9 @@ const signup = ({navigation}) =>
         firebaseApp.auth().createUserWithEmailAndPassword(hoten, matkhau)
             .then(function (currentUser) 
             {
-             this.itemRef = firebaseApp.database().ref('/users/' + firebaseApp.auth().currentUser.uid);
+             this.itemRef = firebaseApp.database().ref('/users/' + firebaseApp.auth().currentUser.uid + '/k2');
              this.itemRef.set({
-              k1:{
+              k:{
                 thongtincn:{
                 Ten:hoten.toString(),
                 Quequan:quequan.toString(),

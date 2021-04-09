@@ -11,9 +11,10 @@ const sign = ({navigation,route}) =>
 {
   
     const dispatch = useDispatch();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('t@gmail.com');
+    const [password, setPassword] = useState('123456789');
     const [userid,setuserid] = useState('');
+    const [userd, setuserd] = useState('');
     var ss = firebaseApp.database().ref('lili');
     const onSubmit = () => 
     {
@@ -27,7 +28,6 @@ const sign = ({navigation,route}) =>
         .auth().signInWithEmailAndPassword(username, password).then((currentUser) => 
         {
           var userd;
-          initialParams={userd:0}
           userd = firebaseApp.auth().currentUser.uid;
           setuserid(userd);
           const newTransaction = {

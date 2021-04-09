@@ -9,6 +9,7 @@ import LoginApp from './src/Component/LoginApp';
 import HomeScreen from './src/Component/HomeScreen';
 import Mainn from './src/Component/Mainn';
 import AddTransaction from './src/Component/AddTransaction';
+import Accountinformatio from './src/Component/Accountinformation';
 import signup from './src/Component/Signup'; 
 import { View } from 'react-native';
 import { Tab } from 'native-base';
@@ -75,6 +76,13 @@ function App() {
 						component={HomeScreen}
 						options={{
 							title: 'Trình theo dõi chi phí'
+						}}
+					/>
+					<Stack.Screen
+						name="Accountinformatio"
+						component={Accountinformatio}
+						options={{
+							title: 'Accountinformatio'
 						}}
 					/>
 					<Stack.Screen

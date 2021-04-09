@@ -1,20 +1,23 @@
-import React, {Fragment} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React, {Fragment,useState} from 'react';
+import {StyleSheet, View, Text,FlatList} from 'react-native';
 import {Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {useSelector} from 'react-redux';
-
-const Balance = ({navigation}) => {
+import {useSelector, useDispatch} from 'react-redux';
+import {deleteTransaction,LoginApp} from '../../store/actions/transactionAction';
+const Balance = (props,{navigation}) => {
   const {transactions} = useSelector((state) => state.transactions);
 
   const prices = transactions.map((transaction) => transaction.price);
-  const totalPrice = prices.reduce((prev, cur) => (prev += cur), 0).toFixed(2);
-
+  const totalPrice = prices.reduce((prev, cur) => (prev += cur),0).toFixed(3);
+  const them=()=>
+  {
+   //return navigation.navigate('Add'); 
+  }
   const expense =
     prices
       .filter((price) => price < 0)
       .reduce((prev, cur) => (prev += cur), 0)
-      .toFixed(2) * -1;
+      .toFixed(3) * -1;
 
   return (
     <LinearGradient
@@ -45,10 +48,11 @@ const Balance = ({navigation}) => {
             marginTop: 67,
             color: '#fff',
             fontFamily: 'Lato-Regular',
-            fontSize: 18,
+            fontSize: 12,
             fontWeight: '700',
           }}>
-          4234 **** **** 6533
+          Mã: {'************'+"\n"}
+          Tên: {props.k1}
         </Text>
       </View>
 
@@ -74,7 +78,7 @@ const Balance = ({navigation}) => {
               justifyContent: 'center',
             }}
             onPress={() => {
-              navigation.navigate('Add');
+             props.navigation.navigate('Add');
             }}>
             <Text style={{color: '#fff', fontWeight: '700', fontSize: 12}}>
               Thêm vào
@@ -84,8 +88,9 @@ const Balance = ({navigation}) => {
           <Text
             style={{
               marginTop: 17,
+              marginLeft:10,
               color: '#fff',
-              fontSize: 15,
+              fontSize: 12,
               fontWeight: '700',
             }}>
               Chi phí
@@ -93,10 +98,11 @@ const Balance = ({navigation}) => {
           <Text
             style={{
               color: '#fff',
-              fontSize: 18,
+              fontSize: 12,
+              marginLeft:10,
               fontWeight: '700',
             }}>
-            VNĐ{expense}
+            {expense}VNĐ
           </Text>
         </View>
       </View>
@@ -107,7 +113,7 @@ const Balance = ({navigation}) => {
 const styles = StyleSheet.create({
   Box: {
     width: '100%',
-    height: 189,
+    height: 200,
     borderRadius: 15,
     flexDirection: 'row',
     padding: 22,

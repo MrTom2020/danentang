@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text,StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {Container, ListItem, CheckBox, Body, Right} from 'native-base';
+import {Container} from 'native-base';
 import Card2 from './signupuser/signup';
 
 import {useSelector, useDispatch} from 'react-redux';

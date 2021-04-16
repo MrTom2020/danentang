@@ -5,13 +5,8 @@ import {Container, ListItem, CheckBox, Body, Right,Left} from 'native-base';
 import Card from './Parts/Card';
 import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteTransaction,LoginApp} from '../store/actions/transactionAction';
-import {
-  NavigationContainer,
-  DarkTheme,
-  DrawerActions
-} from '@react-navigation/native';
-
+import {deleteTransaction} from '../store/actions/transactionAction';
+import {firebaseApp} from './firebase';
 function Item({title,price,id})
  {
   const dispatch = useDispatch();
@@ -79,7 +74,8 @@ const HomeScreen = ({ navigation,route }) =>
             keyExtractor={(item) => item.id}
           />
         ) : (
-            <Empty />
+           // <Empty />
+           <Text>{s}</Text>
         )}
       </View>
     </Container>

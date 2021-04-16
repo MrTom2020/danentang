@@ -11,44 +11,14 @@ import Mainn from './src/Component/Mainn';
 import AddTransaction from './src/Component/AddTransaction';
 import Accountinformatio from './src/Component/Accountinformation';
 import signup from './src/Component/Signup'; 
-import { View } from 'react-native';
-import { Tab } from 'native-base';
+import walletaccountinformation from './src/Component/walletaccountinformation';
 const Stack = createStackNavigator();
-const Tab1 = createBottomTabNavigator();
 
   
 function App() {
 	return (
 		<Provider store={store}>
 			<NavigationContainer>
-			{/*<Tab1.Navigator
-			tabBar={()=><View/>}>
-					<Tab1.Screen name="Home2"
-						component={LoginApp}
-						options={{
-							title: 'Đăng nhập'
-						}}/>
-						<Tab1.Screen name="signup"
-						component={signup}
-						options={{
-							title: 'Đăng ký tài khoản'
-						}}/>
-						<Tab1.Screen name="Main"
-						component={Mainn}
-						options={{
-							title: 'Trang chính'
-						}}/>
-						<Tab1.Screen name="Home"
-						component={HomeScreen}
-						options={{
-							title: 'Trình theo dõi chi phí'
-						}}/>
-						<Tab1.Screen name="Add"
-						component={AddTransaction}
-						options={{
-							title: "Thêm chi phí"
-						}}/>
-					</Tab1.Navigator>*/}
 				<Stack.Navigator>
 					<Stack.Screen
 						name="Home2"
@@ -75,14 +45,21 @@ function App() {
 						name="Home"
 						component={HomeScreen}
 						options={{
-							title: 'Trình theo dõi chi phí'
+							title: 'Xây dựng kế hoạch'
 						}}
 					/>
 					<Stack.Screen
 						name="Accountinformatio"
 						component={Accountinformatio}
 						options={{
-							title: 'Accountinformatio'
+							title: 'Thông tin cá nhân'
+						}}
+					/>
+					<Stack.Screen
+						name="walletaccountinformation"
+						component={walletaccountinformation}
+						options={{
+							title: 'Thông tin tài khoản'
 						}}
 					/>
 					<Stack.Screen

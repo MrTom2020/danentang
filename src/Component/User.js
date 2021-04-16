@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text,StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {Container, ListItem, CheckBox, Body, Right} from 'native-base';
-import Card2 from '../user/User';
+import {Container} from 'native-base';
+import Card2 from '../';
 
 import {useSelector, useDispatch} from 'react-redux';
 

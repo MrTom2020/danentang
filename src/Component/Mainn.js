@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, FlatList, Alert,Image, ImageBackground,StyleSheet} from 'react-native';
+import {View, Text, Image,StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
-import {Container, ListItem, CheckBox, Body, Right,Button, Form,Item, Input, Label} from 'native-base';
-import Empty from './Parts/Empty';
+import {Container, Button, Form} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {useSelector, useDispatch} from 'react-redux';
-import {deleteTransaction,LoginApp} from '../store/actions/transactionAction';
-import { NavigationContainer } from '@react-navigation/native';
-import Transaction from '../store/reducers/Transaction';
+import {useSelector} from 'react-redux';
 const Mainn = ({ navigation,route }) =>
 {
   
@@ -31,6 +27,10 @@ const Mainn = ({ navigation,route }) =>
     {
       return navigation.navigate('Home',{userd});
     }
+    const qltk=()=>
+    {
+      return navigation.navigate('walletaccountinformation',{userd});
+    }
   return (
     <Container style={{backgroundColor:'#333333'}}>
       <Image source={require('../../image/ddep.jpg')} style={{width:'100%',height:'80%',flexDirection:'row',alignItems:'center',justifyContent:'center'}}/>
@@ -49,7 +49,7 @@ const Mainn = ({ navigation,route }) =>
           
             <Button block onPress={onSubmit} style={{ marginHorizontal: 2,backgroundColor:'#333333', borderRadius: 15,width:90 }}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
-             Trang Chủ{password}
+            Lập kế hoạch{password}
             </Text>
           </Button>
           <Button block onPress={taikhoan} style={{ marginHorizontal: 2,backgroundColor:'#333333',borderRadius: 15,width:90  }}>
@@ -60,6 +60,11 @@ const Mainn = ({ navigation,route }) =>
           <Button block onPress={thongke} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 }}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
             Thống kê
+            </Text>
+          </Button>
+          <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'2%'}}>
+            <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
+            Quản Lý tài khoản
             </Text>
           </Button>
         </Form>
@@ -73,7 +78,7 @@ const Mainn = ({ navigation,route }) =>
 const styles = StyleSheet.create({
   Box: {
       width: '100%',
-      height: 90,
+      height: 125,
       borderRadius: 15,
       flexDirection: 'row',
       padding: 22,

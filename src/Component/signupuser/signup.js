@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TextInput,FlatList, Alert, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, Alert, ScrollView} from 'react-native';
 import {Button, Form,Item, Input, Label} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
@@ -26,7 +26,7 @@ const signup = ({navigation}) =>
         firebaseApp.auth().createUserWithEmailAndPassword(hoten, matkhau)
             .then(function (currentUser) 
             {
-             this.itemRef = firebaseApp.database().ref('/users/' + firebaseApp.auth().currentUser.uid + '/k2');
+             this.itemRef = firebaseApp.database().ref('users/' + firebaseApp.auth().currentUser.uid + '/k2');
              this.itemRef.set({
               k:{
                 thongtincn:{

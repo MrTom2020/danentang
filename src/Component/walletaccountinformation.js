@@ -2,14 +2,16 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container} from 'native-base';
-import Card2 from './Login/sign';
-import {useSelector} from 'react-redux';
+import Card2 from '../../src/Component/walletaccountinformation/wallet';
 
+import {useSelector, useDispatch} from 'react-redux';
 
-const LoginApp = ({ navigation }) =>
+const walletaccountinformation = ({ navigation }) =>
 {
   const {transactions} = useSelector((state) => state.transactions);
-  return (  
+  
+  return (
+    
     <Container style={{...styles.backgroundLogin}}>
       <Animated.View
         style={{
@@ -29,4 +31,4 @@ const styles= StyleSheet.create({
   }
 
 });
-export default LoginApp;
+export default walletaccountinformation;

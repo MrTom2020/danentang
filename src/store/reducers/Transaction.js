@@ -1,4 +1,4 @@
-import {ADD_TRANSACTION, DELETE_TRANSACTION,LOGIN_APP,SIGNUPUSER,ACCOUNTINFORMATION} from '../actions/types';
+import {ADD_TRANSACTION, DELETE_TRANSACTION,LOGIN_APP,SIGNUPUSER,ACCOUNTINFORMATION,USER} from '../actions/types';
 
 const initialState = {
   transactions: [
@@ -8,6 +8,11 @@ const initialState = {
 export default (state = initialState, {type, payload}) => {
   switch (type)
   {
+    case USER:
+      return{
+        ...state,
+        transactions:[payload,...state.transactions]
+      };
     case LOGIN_APP:
       return {
         ...state,

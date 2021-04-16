@@ -3,3 +3,4 @@ export const DELETE_TRANSACTION = "DELETE_TRANSACTION";
 export const LOGIN_APP = "LOGIN_APP";
 export const SIGNUPUSER = "SIGNUPUSER";
 export const ACCOUNTINFORMATION = "ACCOUNTINFORMATION";
+export const USER = "USER";

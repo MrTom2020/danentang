@@ -1,9 +1,8 @@
-import React, {Fragment,useState} from 'react';
-import {StyleSheet, View, Text,FlatList} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import {Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import {useSelector, useDispatch} from 'react-redux';
-import {deleteTransaction,LoginApp} from '../../store/actions/transactionAction';
+import {useSelector} from 'react-redux';
 const Balance = (props,{navigation}) => {
   const {transactions} = useSelector((state) => state.transactions);
 

@@ -28,6 +28,10 @@ const Mainn = ({ navigation,route }) =>
     {
       return navigation.navigate('walletaccountinformation',{userd,username});
     }
+    const taikhoann=()=>
+    {
+      return navigation.navigate('taikhoan',{userd,username});
+    }
   return (
     <Container style={{backgroundColor:'#333333'}}>
       <Image source={require('../../image/ddep.jpg')} style={{width:'100%',height:'80%',flexDirection:'row',alignItems:'center',justifyContent:'center'}}/>
@@ -46,7 +50,7 @@ const Mainn = ({ navigation,route }) =>
           
             <Button block onPress={onSubmit} style={{ marginHorizontal: 2,backgroundColor:'#333333', borderRadius: 15,width:90 }}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
-            Lập kế hoạch{password}
+            Lập kế hoạch
             </Text>
           </Button>
           <Button block onPress={taikhoan} style={{ marginHorizontal: 2,backgroundColor:'#333333',borderRadius: 15,width:90  }}>
@@ -64,7 +68,7 @@ const Mainn = ({ navigation,route }) =>
             Tạo ví
             </Text>
           </Button>
-          <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'2%'}}>
+          <Button block onPress={taikhoann} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'2%'}}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
             Tài khỏan
             </Text>

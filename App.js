@@ -11,7 +11,9 @@ import Mainn from './src/Component/Mainn';
 import AddTransaction from './src/Component/AddTransaction';
 import Accountinformatio from './src/Component/Accountinformation';
 import signup from './src/Component/Signup'; 
+import taikhoan from './src/Component/taikhoan';
 import walletaccountinformation from './src/Component/walletaccountinformation';
+import khoanthuchi from './src/Component/khoanthuchi';
 const Stack = createStackNavigator();
 
   
@@ -39,6 +41,20 @@ function App() {
 						component={Mainn}
 						options={{
 							title: 'Trang chính'
+						}}
+					/>
+					<Stack.Screen
+						name="khoanthuchi"
+						component={khoanthuchi}
+						options={{
+							title: 'Tạo khoản khoản thu chi'
+						}}
+					/>
+					<Stack.Screen
+						name="taikhoan"
+						component={taikhoan}
+						options={{
+							title: 'Trang tài khoản'
 						}}
 					/>
 					<Stack.Screen

@@ -74,8 +74,8 @@ const HomeScreen = ({ navigation,route }) =>
             keyExtractor={(item) => item.id}
           />
         ) : (
-           // <Empty />
-           <Text>{s}</Text>
+            <Empty />
+      
         )}
       </View>
     </Container>

@@ -36,7 +36,7 @@ const sign = ({navigation,route}) =>
             userid,
           };
           dispatch(LoginApp({...newTransaction}));
-         navigation.navigate('Main',{userd});
+         navigation.navigate('Main',{userd,username});
         }).catch((e)=> {
           Alert.alert('Thong bao', e.toString())
         })

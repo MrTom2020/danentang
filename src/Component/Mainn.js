@@ -8,15 +8,12 @@ const Mainn = ({ navigation,route }) =>
 {
   
   const {transactions} = useSelector((state) => state.transactions);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(route.params.username);
   const {password} = transactions.map((LoginApp)=>LoginApp.password);
   const userid = transactions.map((LoginApp)=>LoginApp.userid);
   const [userd,setuserd] = useState(route.params.userd);
   const onSubmit=()=>
     {
-
-     // setPassword(transactions.password);
-      //return alert(password);
       return navigation.navigate('Home',{userd});
     }
     const taikhoan=()=>
@@ -29,7 +26,7 @@ const Mainn = ({ navigation,route }) =>
     }
     const qltk=()=>
     {
-      return navigation.navigate('walletaccountinformation',{userd});
+      return navigation.navigate('walletaccountinformation',{userd,username});
     }
   return (
     <Container style={{backgroundColor:'#333333'}}>
@@ -54,7 +51,7 @@ const Mainn = ({ navigation,route }) =>
           </Button>
           <Button block onPress={taikhoan} style={{ marginHorizontal: 2,backgroundColor:'#333333',borderRadius: 15,width:90  }}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
-             Tài Khoản
+             Thông tin cá nhân
             </Text>
           </Button>
           <Button block onPress={thongke} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 }}>
@@ -64,7 +61,17 @@ const Mainn = ({ navigation,route }) =>
           </Button>
           <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'2%'}}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
-            Quản Lý tài khoản
+            Tạo ví
+            </Text>
+          </Button>
+          <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'2%'}}>
+            <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
+            Tài khỏan
+            </Text>
+          </Button>
+          <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'2%'}}>
+            <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
+            Thu chi
             </Text>
           </Button>
         </Form>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container} from 'native-base';
@@ -6,12 +6,12 @@ import Card2 from '../../src/Component/walletaccountinformation/wallet';
 
 import {useSelector, useDispatch} from 'react-redux';
 
-const walletaccountinformation = ({ navigation }) =>
+const walletaccountinformation = ({ navigation ,route}) =>
 {
   const {transactions} = useSelector((state) => state.transactions);
-  
+  const [userd,setuserd] = useState(route.params.userd);
+  const [username,setusername] = useState(route.params.username);
   return (
-    
     <Container style={{...styles.backgroundLogin}}>
       <Animated.View
         style={{
@@ -20,7 +20,7 @@ const walletaccountinformation = ({ navigation }) =>
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <Card2 navigation={navigation} />
+        <Card2 k1={userd} k2={username} navigation={navigation} />
       </Animated.View>
     </Container>
   );

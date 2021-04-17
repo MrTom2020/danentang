@@ -11,6 +11,7 @@ const khoanthuchi = ({route,navigation }) =>
   const {transactions} = useSelector((state) => state.transactions);
   const [hoten, sethoten] = useState(route.params.hoten);
   const [tien,setvitien] = useState(route.params.tien);
+  const [mand,setmand] = useState(route.params.mand);
   return (
     
     <Container style={{...styles.backgroundLogin}}>
@@ -21,7 +22,7 @@ const khoanthuchi = ({route,navigation }) =>
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <Card2 k1={tien} k2={hoten} navigation={navigation} />
+        <Card2 k1={tien} k2={hoten} k3={mand} navigation={navigation} />
       </Animated.View>
     </Container>
   );

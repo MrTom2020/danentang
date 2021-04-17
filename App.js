@@ -14,6 +14,7 @@ import signup from './src/Component/Signup';
 import taikhoan from './src/Component/taikhoan';
 import walletaccountinformation from './src/Component/walletaccountinformation';
 import khoanthuchi from './src/Component/khoanthuchi';
+import thongke from './src/Component/thongke';
 const Stack = createStackNavigator();
 
   
@@ -62,6 +63,13 @@ function App() {
 						component={HomeScreen}
 						options={{
 							title: 'Xây dựng kế hoạch'
+						}}
+					/>
+					<Stack.Screen
+						name="thongke"
+						component={thongke}
+						options={{
+							title: 'Trang thống kê'
 						}}
 					/>
 					<Stack.Screen

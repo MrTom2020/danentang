@@ -52,7 +52,7 @@ const sign = (props,{navigation}) =>
             style={styles.Box}>
             <View style={{ width: '100%', alignItems: 'flex-start' }}>
           <Form>
-            <Label style={{marginLeft:'35%',fontSize:20,fontStyle:'italic',fontWeight:'bold',paddingBottom:'10%'}}>Tạo ví</Label>
+            <Label style={{marginLeft:'35%',fontSize:20,fontStyle:'italic',fontWeight:'bold',paddingBottom:'10%'}}>Cập nhật ví tiền</Label>
             <Item style={{...styles.item}}>
             <Text style={{color:'#ffffff'}}>Tên : {hoten}</Text>
           </Item>

@@ -29,7 +29,7 @@ const sign = (props,{navigation}) =>
             Hoten:hoten,
             Mand:mand,
            Tenvi:tenvi,
-           Tien:tien,
+           ViTien:tien,
            Mota:motavi
           }
         });

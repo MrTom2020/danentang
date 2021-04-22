@@ -9,23 +9,26 @@ const thongke = (props,{navigation}) => {
 
   const prices = transactions.map((transaction) => transaction.price);
   const totalPrice = prices.reduce((prev, cur) => (prev += cur),0).toFixed(3);
-  var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k');
-  t.on('value',(snapshot) =>{
-    snapshot.forEach((childSnapshot)=>{
-        var childData = childSnapshot.val();
-        Alert.alert(childData.toString());
-    });
-  });
-  const them=()=>
-  {
-    // var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k/Hoten');
-    // t.once('value',(snapshot) =>{
-    //   snapshot.forEach((childSnapshot)=>{
-    //       Alert.alert(childSnapshot.val());
-    //   });
-    // });
-   //return navigation.navigate('Add'); 
-  }
+  // var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k');
+  // t.once('value',(snapshot) =>{
+  //   snapshot.forEach((childSnapshot)=>{
+  //       var childData = childSnapshot.val();
+  //       Alert.alert(childData.toString());
+  //   });
+  // });
+  // const Them=()=>
+  // {
+  //   var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k');
+  //   t.once('value',(snapshot) =>{
+  //     snapshot.forEach((childSnapshot)=>
+  //     {
+  //       var child = childSnapshot.child('Hoten').val();
+  //         Alert.alert(child);
+  //     });
+  //   });
+  //return navigation.navigate('Add'); 
+    
+  //}
   const expense =
     prices
       .filter((price) => price < 0)

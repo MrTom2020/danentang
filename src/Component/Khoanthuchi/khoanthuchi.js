@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Alert, ScrollView} from 'react-native';
-import {Button, Form,Item, Input, Label} from 'native-base';
+import {Button, Form,Item, Input, Label, CheckBox} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {useDispatch} from 'react-redux';
@@ -19,6 +19,7 @@ const khoanthuchi = (props,{navigation}) =>
     const [thoigiangdd, setthoigiangdd] = useState(date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
      const [show, setShow] = useState(false);
      const [mand,setmand] = useState(props.k3);
+     const [checked,setchecked] = useState(false);
      var dd = new Date();
      const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || date;
@@ -37,6 +38,11 @@ const khoanthuchi = (props,{navigation}) =>
     const showTimepicker = () => {
       showMode('time');
     };
+    const showTimepicker2 = () => {
+     setchecked(!checked);
+     Alert.alert(checked.toString());
+
+    };
     const onSubmit = () => 
     {
       if(!hoten || !tenkhoanthuchi || !tien)
@@ -45,22 +51,19 @@ const khoanthuchi = (props,{navigation}) =>
       }
       else
       {
-
-             this.itemRef = firebaseApp.database().ref('users/' + mand + '/k3/' + Date.now());
+            var loaitt = checked === true ? "KhoanThu":"khoanchi";
+            var tientt = checked === true ? tru(tien,giatri):tinh(tien,giatri);
+             this.itemRef = firebaseApp.database().ref('users/' + mand + '/k3/' + loaitt + '/' + Date.now());
              this.itemRef.set({
-              k:{
-                khoanthuchi:{
                   Hoten:hoten,
-                  Vitien:tien - giatri + 0.001,
+                  Vitien:tientt,
                   Tenkc:tenkhoanthuchi,
                   Giatri:giatri,
                   Thoigiangd:thoigiangdd
-                }
-              }
             })
-            firebaseApp.database().ref('users/' + mand +'/k3/k/Tien').set(tien - giatri + 0.001);
-            setvitien(tien - giatri + 0.001);
-            Alert.alert("Đăng ký tài khoản thành công");
+            firebaseApp.database().ref('users/' + mand +'/k3/k/ViTien').set(tientt);
+            setvitien(tientt);
+            Alert.alert("Tạo khoản chi thành công");
            // Alert.alert(k);
       }
     };
@@ -75,7 +78,7 @@ const khoanthuchi = (props,{navigation}) =>
             style={styles.Box}>
             <View style={{ width: '100%', alignItems: 'flex-start' }}>
           <Form>
-            <Label style={{marginLeft:'35%',fontSize:25,fontStyle:'italic',fontWeight:'bold',paddingBottom:'10%'}}>Đăng ký tài khoản</Label>
+            <Label style={{marginLeft:'35%',fontSize:25,fontStyle:'italic',fontWeight:'bold',paddingBottom:'10%'}}>Thêm giao dịch</Label>
           <Item style={{...styles.item}}>
            <Text>Họ tên </Text>
           </Item>
@@ -89,6 +92,12 @@ const khoanthuchi = (props,{navigation}) =>
            <Text style={{fontStyle:'italic',color:'#ffffff',textAlign:'center'}}>{tien}</Text>
           </Item>
           <Item style={{...styles.item}}>
+           <Text>Loại :</Text>
+           <CheckBox value={checked}
+           onPress={() => showTimepicker2()}/>
+           <Text>        {checked ===true ? "Loại chi " : "Loại thu"}</Text>
+          </Item>
+          <Item style={{...styles.item}}>
            <Text>Tên khoản thu hoặc chi </Text>
           </Item>
           <Item style={{...styles.item,backgroundColor:'#333333',height:50,borderRadius:10,marginTop:'-5%',padding:'5%'}}>
@@ -99,7 +108,7 @@ const khoanthuchi = (props,{navigation}) =>
             />
           </Item>
           <Item style={{...styles.item}}>
-           <Text>giá trị giao dịch </Text>
+           <Text>giá trị giao dịch</Text>
           </Item>
           <Item style={{...styles.item,backgroundColor:'#333333',height:50,borderRadius:10,marginTop:'-5%',padding:'5%'}}>
           <Input
@@ -156,5 +165,17 @@ const styles = StyleSheet.create({
         marginVertical: 20,
     width:300,
   },
+  checkbox:{
+    alignSelf:"center",
+    zIndex:1000
+  }
     });
+function tinh(a,b)
+{
+  return Number(a) + Number(b);
+}
+function tru(a,b)
+{
+  return Number(a) - Number(b);
+}
 export default khoanthuchi;

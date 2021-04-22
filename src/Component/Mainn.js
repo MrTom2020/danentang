@@ -26,7 +26,7 @@ const Mainn = ({ navigation,route }) =>
     }
     const qltk=()=>
     {
-      return navigation.navigate('walletaccountinformation',{userd,username});
+      return navigation.navigate('khoanthuchi',{userd,username});;
     }
     const taikhoann=()=>
     {
@@ -35,6 +35,10 @@ const Mainn = ({ navigation,route }) =>
     const thongKe=()=>
     {
       return navigation.navigate('thongke',{userd,username});
+    }
+    const qlv=()=>
+    {
+      return navigation.navigate('walletaccountinformation',{userd,username});
     }
   return (
     <Container style={{backgroundColor:'#333333'}}>
@@ -67,7 +71,7 @@ const Mainn = ({ navigation,route }) =>
             Thống kê
             </Text>
           </Button>
-          <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'15%',height:90}}>
+          <Button block onPress={qlv} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'15%',height:90}}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
             Cập nhật ví
             </Text>
@@ -75,11 +79,6 @@ const Mainn = ({ navigation,route }) =>
           <Button block onPress={taikhoann} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'15%',height:90}}>
             <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
             Tài khoản
-            </Text>
-          </Button>
-          <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'15%',height:90}}>
-            <Text style={{color: '#fff', fontWeight: '100', fontSize: 14}}>
-            Thu chi
             </Text>
           </Button>
           <Button block onPress={qltk} style={{ marginHorizontal: 2,backgroundColor:'#333333' ,borderRadius: 15,width:90 ,marginTop:'15%',height:90}}>

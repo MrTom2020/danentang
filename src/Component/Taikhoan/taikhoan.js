@@ -22,7 +22,7 @@ const taikhoan = (props,{navigation}) =>
      setmand(snapshot.child('Mand').val());
        setmota(snapshot.child('Mota').val());
       settenvitien(snapshot.child('Tenvi').val());
-      settien(snapshot.child('Tien').val());
+      settien(snapshot.child('ViTien').val());
       });
     const extitt = () => 
     {

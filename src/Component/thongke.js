@@ -6,8 +6,8 @@ import Card from './Parts/Card';
 import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteTransaction} from '../store/actions/transactionAction';
-import {firebaseApp} from './firebase';
-function Item({title,price,id})
+import {getDatabase,firebaseApp,ref, onChildAdded, onChildChanged, onChildRemoved} from './firebase';
+function Item({title})
  {
   const dispatch = useDispatch();
   return (
@@ -31,15 +31,6 @@ function Item({title,price,id})
             {title}
           </Text>
         </Left>
-
-        <Right>
-          <Text
-            style={{fontSize: 12, fontWeight: '700', marginLeft: -100,
-              color: price > 0 ? '#009BFC' : '#ff4500',
-            }}>
-            {price > 0 ? `${price}VNĐ` : `${Math.abs(price)}VNĐ`}
-          </Text>
-        </Right>
       </ListItem>
     </View>
   );
@@ -47,20 +38,21 @@ function Item({title,price,id})
 function Ddl(Data)
 {
     var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k');
-    t.on('value',(snapshot) =>{
+    t.once('value',(snapshot) =>{
       
         snapshot.forEach((childSnapshot)=>{
             let item = {
                 id: childSnapshot.key,
                 value: childSnapshot.val(),
             }
-            Data.push(item)
-            //var childData = childSnapshot.val();
-            // Alert.alert(item.value.toString());      
-            //Data.push(childData);
+            //arr.push(item);
+            var childData = childSnapshot.val();
+             Alert.alert(item.value.toString());      
+            Data.push(childData);
         });
-        //setData(arr)
+        //return setData(Data);
     });
+    //const db = getDatabase();
 }
 const thongke = ({ navigation,route }) =>
 {
@@ -69,9 +61,11 @@ const thongke = ({ navigation,route }) =>
   const [username, setUsername] = useState('t@gmail.com');
   const [userd,setuserd] = useState(route.params.userd);
   const [Data,setData] = useState([]);
+  //arr=[];
 
+  
   Ddl(Data);
-
+  //setData(Data);
   return (
     <Container>
       <Animated.View
@@ -88,7 +82,7 @@ const thongke = ({ navigation,route }) =>
           <FlatList
             data={Data}
             renderItem={({item}) => (
-              <Item key={item.id} title={item.value} price={item.price} id={item.id} />
+              <Item key={item.id} title={item.value} />
             )}
             keyExtractor={(item) => item.id}
           />

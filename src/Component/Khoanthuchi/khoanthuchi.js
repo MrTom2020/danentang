@@ -40,7 +40,7 @@ const khoanthuchi = (props,{navigation}) =>
     };
     const showTimepicker2 = () => {
      setchecked(!checked);
-     Alert.alert(checked.toString());
+     Alert.alert("Đã chuyển trạng thái");
 
     };
     const onSubmit = () => 

@@ -1,136 +1,122 @@
-import React from 'react';
-import {StyleSheet, View, Text, Alert} from 'react-native';
+import React,{useState} from 'react';
+import {StyleSheet,ImageBackground, View,Text, Alert} from 'react-native';
 import {Button} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 import {firebaseApp} from '../firebase';
+import {VictoryChart,VictoryGroup,VictoryBar, VictoryLegend} from 'victory-native';
 const thongke = (props,{navigation}) => {
   const {transactions} = useSelector((state) => state.transactions);
-
-  const prices = transactions.map((transaction) => transaction.price);
-  const totalPrice = prices.reduce((prev, cur) => (prev += cur),0).toFixed(3);
-  // var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k');
-  // t.once('value',(snapshot) =>{
-  //   snapshot.forEach((childSnapshot)=>{
-  //       var childData = childSnapshot.val();
-  //       Alert.alert(childData.toString());
-  //   });
-  // });
-  // const Them=()=>
-  // {
-  //   var t = firebaseApp.database().ref('users/' + 'V5pqBxpkMHaEytfn7kaM5Dq63vf1' + '/k3/' + 'k');
-  //   t.once('value',(snapshot) =>{
-  //     snapshot.forEach((childSnapshot)=>
-  //     {
-  //       var child = childSnapshot.child('Hoten').val();
-  //         Alert.alert(child);
-  //     });
-  //   });
-  //return navigation.navigate('Add'); 
-    
-  //}
-  const expense =
-    prices
-      .filter((price) => price < 0)
-      .reduce((prev, cur) => (prev += cur), 0)
-      .toFixed(3) * -1;
+  const [userd,setuserd] = useState(props.dataFromParent);
+   const [tt,settt] = useState('');
+   const [thu,setthu] = useState('');
+   const [tientv,settientv] = useState('');
+   const [ttt,setttt] = useState('');
+   const [conlai,setconlai] = useState('');
+   const data = {
+     planned:[null,{x:'kk1',y:10}],
+     actual:[
+       {x:'kk4',y:10},
+       {x:'kk2',y:20},
+       {x:'kk3',y:20}
+     ]
+   };
+   const Them=()=>
+   {
+   var tienTV;
+   var cc = 0;
+   var cc2 = 0;
+   var pt;
+   var ref3= firebaseApp.database().ref('users/' + userd + '/k3/k').child('ViTien');
+    ref3.once('value',(snapshot)=>
+    {
+      tienTV =snapshot.val();
+      settientv(tienTV);
+    });
+    var ref= firebaseApp.database().ref('users/' + userd + '/k3').child('Khoanchi');
+    ref.on('child_added',(snapshot)=>
+    {
+      var child = snapshot.key;
+      var child2= firebaseApp.database().ref('users/' + userd +'/k3/Khoanchi/' + child).child('Giatri');
+     child2.once('child_added',(snapshot2)=>
+      {
+        var c = snapshot2.val();
+       cc +=Number(c);
+        settt("Tổng Khoản chi :"+cc);
+      });
+    });
+    var tienn = tientv + cc;
+   // settientv(tienn);
+     pt =(Number(cc) / Number(tienn) * 100).toFixed(3);
+     var cl = 100 - Number(pt);
+     setconlai("\nTiền còn lại trong ví là " + tientv + " Chiếm " + cl + "%");
+     setttt("\nSố chi của bạn chiếm :" +pt.toString() + "%");
+    var ref2= firebaseApp.database().ref('users/' + userd + '/k3').child('khoanthu');
+    ref2.on('child_added',(snapshot)=>
+    {
+      var child = snapshot.key;
+      var child2= firebaseApp.database().ref('users/' + userd +'/k3/khoanthu/' + child).child('Giatri');
+     child2.once('child_added',(snapshot2)=>
+      {
+        var c = snapshot2.val();
+       // Alert.alert(c.toString());
+       cc2 +=Number(c);
+        setthu("\nTổng Khoản thu :"+cc2);
+      });
+    });
+    return null;
+  }
+ 
 
   return (
-    <LinearGradient
-      colors={['#FAAD3D', '#EFC90A', '#F1CB0C']}
-      style={styles.Box}>
-      <View style={{width: '70%', alignItems: 'flex-start'}}>
-        <Text
+    // <ImageBackground source={require('../../../image/bbd.jpg')} style={{width:'110%',height:'100%',flexDirection:'row',alignItems:'center',justifyContent:'center',display:'flex'}}>
+    //   <View style={{...styles.Box}}>
+    //   <Text><Them/>{tt}{thu}{ttt}{conlai}</Text>
+    //   </View>
+      
+    // </ImageBackground>
+    <View>
+      <VictoryChart>
+        <VictoryGroup offset={10}>
+        <VictoryBar
+          data={data.actual}
           style={{
-            fontSize: 15,
-            color: '#fff',
-            fontFamily: 'Lato-Regular',
-            fontWeight: '700',
-          }}>
-          Thu nhập
-        </Text>
-        <Text
+            data:{
+              fill:'blue'}}}/>
+          <VictoryBar
+          data={data.planned}
           style={{
-            fontFamily: 'Lato-Medium',
-            fontSize: 32,
-            color: '#fff',
-            fontWeight: '700',
-          }}>
-          {totalPrice}VNĐ
-        </Text>
-
-        <Text
-          style={{
-            marginTop: 67,
-            color: '#fff',
-            fontFamily: 'Lato-Regular',
-            fontSize: 12,
-            fontWeight: '700',
-          }}>
-          Mã: {'************'+"\n"}
-          Tên: {props.k1}
-        </Text>
-      </View>
-
-      <View
-        style={{
-          alignItems: 'flex-end',
-          width: '30%',
-        }}>
-        <Text style={{fontSize: 18, color: '#fff', fontWeight: '700'}}>
-          VNĐ
-        </Text>
-        <View style={{flex: 1}}>
-          <Button
-            rounded
-            light
-            style={{
-              padding: 10,
-              marginTop: 32,
-              borderWidth: 3,
-              borderColor: '#fff',
-              backgroundColor: '#E10C62',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onPress={() => {
-             props.navigation.navigate('Add');
-            }}>
-            <Text style={{color: '#fff', fontWeight: '700', fontSize: 12}}>
-              Thêm vào
-            </Text>
-          </Button>
-
-          <Text
-            style={{
-              marginTop: 17,
-              marginLeft:10,
-              color: '#fff',
-              fontSize: 12,
-              fontWeight: '700',
-            }}>
-              Chi phí
-          </Text>
-          <Text
-            style={{
-              color: '#fff',
-              fontSize: 12,
-              marginLeft:10,
-              fontWeight: '700',
-            }}>
-            {expense}VNĐ
-          </Text>
-        </View>
-      </View>
-    </LinearGradient>
+            data:{
+              fill:'blue'}}}/>
+              
+        </VictoryGroup>
+        <VictoryLegend
+        data={[
+          {
+            name:'ook',
+            symbol:{
+              fill:'blue'
+            },
+          },
+          {
+            name:'ok',
+            symbol:{
+              fill:'#333333'
+            }
+          }
+        ]}/>
+      </VictoryChart>
+    </View>
+    
   );
 };
 
 const styles = StyleSheet.create({
   Box: {
-    width: '100%',
-    height: 200,
+    width: '90%',
+    height: 400,
     borderRadius: 15,
+    backgroundColor:'#ffffff',
     flexDirection: 'row',
     padding: 22,
   },

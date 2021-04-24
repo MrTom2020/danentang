@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {View, Text, FlatList, Alert} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container, ListItem, CheckBox, Body, Right,Left} from 'native-base';
-import Card from './Parts/Card';
+import Card from '../Component/Thongke/thongke';
 import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteTransaction} from '../store/actions/transactionAction';
@@ -60,11 +60,8 @@ const thongke = ({ navigation,route }) =>
   const [password, setPassword] = useState('123456789');
   const [username, setUsername] = useState('t@gmail.com');
   const [userd,setuserd] = useState(route.params.userd);
-  const [Data,setData] = useState([]);
   //arr=[];
 
-  
-  Ddl(Data);
   //setData(Data);
   return (
     <Container>
@@ -75,22 +72,8 @@ const thongke = ({ navigation,route }) =>
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <Card dataFromParent={userd}k1={username} navigation={navigation}  />
+        <Card dataFromParent={userd}k1={username}  navigation={navigation}  />
       </Animated.View>
-      <View style={{flex: 1, marginTop: -150}}>
-        {Data.length > 0 ? (
-          <FlatList
-            data={Data}
-            renderItem={({item}) => (
-              <Item key={item.id} title={item.value} />
-            )}
-            keyExtractor={(item) => item.id}
-          />
-        ) : (
-            <Empty />
-      
-        )}
-      </View>
     </Container>
   );
 };

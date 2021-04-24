@@ -51,19 +51,21 @@ const khoanthuchi = (props,{navigation}) =>
       }
       else
       {
-            var loaitt = checked === true ? "KhoanThu":"khoanchi";
+            var loaitt = checked === true ? "Khoanchi":"khoanthu";
             var tientt = checked === true ? tru(tien,giatri):tinh(tien,giatri);
              this.itemRef = firebaseApp.database().ref('users/' + mand + '/k3/' + loaitt + '/' + Date.now());
              this.itemRef.set({
                   Hoten:hoten,
                   Vitien:tientt,
                   Tenkc:tenkhoanthuchi,
-                  Giatri:giatri,
+                  Giatri:{
+                   Tien:giatri},
                   Thoigiangd:thoigiangdd
             })
             firebaseApp.database().ref('users/' + mand +'/k3/k/ViTien').set(tientt);
             setvitien(tientt);
             Alert.alert("Tạo khoản chi thành công");
+            props.navigation.navigate('Main');
            // Alert.alert(k);
       }
     };

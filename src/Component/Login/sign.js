@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text,  Alert} from 'react-native';
+import {StyleSheet, View, Text,  Alert,ImageBackground } from 'react-native';
 import {Button, Form,Item, Input, Label} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import {LoginApp} from '../../store/actions/transactionAction';
@@ -47,9 +47,7 @@ const sign = ({navigation,route}) =>
     return navigation.navigate('signup');
    };
     return (
-        <LinearGradient
-            colors={['#81FBB8', '#28C76F']}
-            style={styles.Box}>
+      <ImageBackground source={require('../../../image/bbd.jpg')} style={{width:'110%',height:'100%',flexDirection:'row',alignItems:'center',justifyContent:'center',display:'flex'}}>
             <View style={{ width: '100%', alignItems: 'flex-start' }}>
           <Form>
             <Label style={{marginLeft:'35%',fontSize:30,fontStyle:'italic',fontWeight:'bold',paddingBottom:'10%'}}>Đăng nhập</Label>
@@ -80,7 +78,7 @@ const sign = ({navigation,route}) =>
           </Button>
         </Form>
             </View> 
-        </LinearGradient>
+        </ImageBackground>
     );
     
 };
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
     },
     item: {
         marginVertical: 20,
-    width:'100%'
+    width:'90%'
   },
     });
 export default sign;

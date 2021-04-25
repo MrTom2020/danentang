@@ -3,6 +3,7 @@ import {StyleSheet, View, Text, Alert, ScrollView} from 'react-native';
 import {Button, Form,Item, Input, Label, CheckBox} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker2 from '@react-native-community/datetimepicker';
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
 const khoanthuchi = (props,{navigation}) => 
@@ -14,17 +15,22 @@ const khoanthuchi = (props,{navigation}) =>
     const [tien,setvitien] = useState(props.k1);
     const [thoigiangd, setthoigiangd] = useState('');
     const [date, setDate] = useState(new Date());
+    const [date2, setDate2] = useState(new Date());
     const [giatri,setgiatri] = useState('');
     const [mode, setMode] = useState('date');
-    const [thoigiangdd, setthoigiangdd] = useState(date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear());
+    const [mode2, setMode2] = useState('date');
+    const [thoigiangdd, setthoigiangdd] = useState('');
      const [show, setShow] = useState(false);
+     const [show2, setShow2] = useState(false);
      const [mand,setmand] = useState(props.k3);
      const [checked,setchecked] = useState(false);
      var dd = new Date();
      const onChange = (event, selectedDate) => {
       const currentDate = selectedDate || date;
+     // Alert.alert(currentDate.toString());
       setShow(Platform.OS === 'ios');
       setDate(currentDate);
+      setthoigiangdd(currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear());
     };
      const showMode = (currentMode) => {
       setShow(true);
@@ -37,6 +43,25 @@ const khoanthuchi = (props,{navigation}) =>
   
     const showTimepicker = () => {
       showMode('time');
+    };
+    const onChange2 = (event2, selectedDate2) => {
+      const currentDate2 = selectedDate2 || date2;
+      // setthoigiangdd(currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear() +" "+ currentDate.getHours() + "giờ:" + currentDate.getSeconds() + ":phút");
+      setShow2(Platform.OS === 'ios');
+      setDate2(currentDate2);
+      setthoigiangd(currentDate2.getHours() + "giờ:" + currentDate2.getMinutes()+ ":phút");
+    };
+     const showMode2 = (currentMode2) => {
+      setShow2(true);
+      setMode2(currentMode2);
+    };
+    const showDatepicker3 = () => 
+    {
+      showMode2('date');
+    };
+  
+    const showTimepicker3 = () => {
+      showMode2('time');
     };
     const showTimepicker2 = () => {
      setchecked(!checked);
@@ -60,7 +85,7 @@ const khoanthuchi = (props,{navigation}) =>
                   Tenkc:tenkhoanthuchi,
                   Giatri:{
                    Tien:giatri},
-                  Thoigiangd:thoigiangdd
+                  Thoigiangd:thoigiangdd +" "+ thoigiangd
             })
             firebaseApp.database().ref('users/' + mand +'/k3/k/ViTien').set(tientt);
             setvitien(tientt);
@@ -120,7 +145,7 @@ const khoanthuchi = (props,{navigation}) =>
             />
           </Item>
           <Item style={{...styles.item,height:50,borderRadius:10,marginTop:'-5%',padding:'5%'}}>
-          <Text>Thời gian giao dịch</Text>
+          <Text>Ngày giao dịch</Text>
           </Item>
           <Item style={{...styles.item}}>
           <Button onPress={showDatepicker} title="Show date picker!" style={{...styles.item,backgroundColor:'#ffffff',height:50,borderRadius:10,marginTop:'-5%',padding:'5%',color:'#ffffff'}} ><Text>{date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()}</Text></Button>
@@ -132,6 +157,22 @@ const khoanthuchi = (props,{navigation}) =>
           is24Hour={true}
           display="default"
           onChange={onChange}
+        />
+      )}
+          </Item>
+          <Item style={{...styles.item,height:50,borderRadius:10,marginTop:'-5%',padding:'5%'}}>
+          <Text>Giờ giao dịch</Text>
+          </Item>
+          <Item style={{...styles.item}}>
+          <Button onPress={showTimepicker3} title="Show date picker!" style={{...styles.item,backgroundColor:'#ffffff',height:50,borderRadius:10,marginTop:'-5%',padding:'5%',color:'#ffffff'}} ><Text>{date2.getHours() + "giờ:" + date2.getMinutes() + ":phút"}</Text></Button>
+           {show2 && (
+        <DateTimePicker
+          testID="dateTimePicker2"
+          value={date2}
+          mode={mode2}
+          is24Hour={true}
+          display="default"
+          onChange={onChange2}
         />
       )}
      

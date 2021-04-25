@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 import {firebaseApp} from '../firebase';
 import {VictoryChart,VictoryGroup,VictoryBar, VictoryLegend,VictoryPie} from 'victory-native';
 import { block } from 'react-native-reanimated';
-const thongke = (props,{navigation}) => {
+const thongke = (props,{navigation,route}) => {
   const {transactions} = useSelector((state) => state.transactions);
   const [userd,setuserd] = useState(props.dataFromParent);
    const [tt,settt] = useState('');
@@ -18,11 +18,16 @@ const thongke = (props,{navigation}) => {
    const [ptc,setptc] = useState('');
    const [ptt,setptt] = useState('');
    const [ptcl,setptcl] = useState('');
+   const [tienchi,settienchi] = useState('');
    const data = {
     actual:[
      { x: 'x', y: 10 }, { x: 'y', y: 12 }, { x: 'z', y: 5 }
     ]
   };
+  const ctkc=()=>
+  {
+      return props.navigation.navigate('chitietkhoanchi',{tienchi,userd});
+  }
    const Them=()=>
    {
    var tienTV;
@@ -45,6 +50,7 @@ const thongke = (props,{navigation}) => {
       {
         var c = snapshot2.val();
        cc +=Number(c);
+       settienchi(cc);
         settt("Tổng Khoản chi :"+cc);
       });
     });
@@ -92,7 +98,7 @@ const thongke = (props,{navigation}) => {
       <Text style={{width:'100%',color:'#FAAD3D',backgroundColor:'#333333',borderRadius:10}}>{tt}{thu}{ttt}{conlai}{tiendt}{"\n"}1 : Tiền chi {"\n"}
       2:Tiền trong ví{"\n"}
       3:Tiền doanh thu</Text>
-      <Button block onPress={Them} style={{...styles.button}}>
+      <Button block onPress={ctkc} style={{...styles.button}}>
             <Text style={{color: '#fff', fontWeight: '450', fontSize: 14}}>
               Xem chi tiết khoản chi
             </Text>
@@ -120,12 +126,13 @@ const styles = StyleSheet.create({
 
   },
   button:{
-    marginTop:'12%',
+    marginTop:'2%',
     marginHorizontal: 2,
     backgroundColor:'#333333',
      borderRadius: 15,
      width:160 ,
-     height:40
+     height:40,
+     zIndex:1000
   }
   
 });

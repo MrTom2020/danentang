@@ -16,6 +16,7 @@ import walletaccountinformation from './src/Component/walletaccountinformation';
 import khoanthuchi from './src/Component/khoanthuchi';
 import chitietkhoanchi from './src/Component/chitietkhoanchi';
 import thongke from './src/Component/thongke';
+import chitietkhoathu from './src/Component/chitietkhoathu';
 const Stack = createStackNavigator();
 
   
@@ -36,6 +37,13 @@ function App() {
 						component={signup}
 						options={{
 							title: 'Đăng ký tài khoản'
+						}}
+					/>
+					<Stack.Screen
+						name="chitietkhoathu"
+						component={chitietkhoathu}
+						options={{
+							title: 'Chi tiết khoản thu'
 						}}
 					/>
 					<Stack.Screen

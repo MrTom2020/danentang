@@ -7,7 +7,7 @@ import {LoginApp} from '../../store/actions/transactionAction';
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
 import auth from '@react-native-firebase/auth';
-const chitietkhoanchi = (props,{navigation}) => 
+const chitietkhoanthu = (props,{navigation}) => 
 {
   
     const dispatch = useDispatch();
@@ -15,15 +15,14 @@ const chitietkhoanchi = (props,{navigation}) =>
     const [password, setPassword] = useState('123456789');
     const [userid,setuserid] = useState('');
     const [userd, setuserd] = useState(props.dataFromParent);
-    var ss = firebaseApp.database().ref('lili');
-    const [tienchi,settienchi] = useState(props.k1);
+    const [tienthu,settienthu] = useState(props.k1);
     const [t,sett] = useState('');
     const Them=()=>
     {
     var tienTV;
     var cc = '';
     var tienn;
-     var ref= firebaseApp.database().ref('users/' + userd + '/k3').child('Khoanchi');
+     var ref= firebaseApp.database().ref('users/' + userd + '/k3').child('khoanthu');
      ref.on('child_added',(snapshot)=>
      {
        var child = snapshot.key;
@@ -31,11 +30,11 @@ const chitietkhoanchi = (props,{navigation}) =>
        var child3 = snapshot.val().Thoigiangd;
        var child4 = snapshot.val().Vitien;
         cc +="\nTên giao dịch : "+child2.toString() + "\nThời gian : " + child3.toString() ;
-       var child5= firebaseApp.database().ref('users/' + userd +'/k3/Khoanchi/' + child).child('Giatri');
+       var child5= firebaseApp.database().ref('users/' + userd +'/k3/khoanthu/' + child).child('Giatri');
       child5.on('child_added',(snapshot2)=>
        {
          var c = snapshot2.val();
-         var pt = (Number(c)/Number(tienchi) * 100).toFixed(3);
+         var pt = (Number(c)/Number(tienthu) * 100).toFixed(3);
          cc+="\n Giá trị : " + c+ " VNĐ\nChiếm : " + pt + "% \n";
          sett(cc);
          for(var k =0; k < 28;k++)
@@ -48,6 +47,10 @@ const chitietkhoanchi = (props,{navigation}) =>
      sett(cc);
      return null;
    }
+   const dktaikhoan =()=>
+   {
+    return navigation.navigate('signup');
+   };
     return (
         <ScrollView style={styles.sc}>
       <ImageBackground source={require('../../../image/bbd.jpg')} style={{width:'110%',height:'100%',flexDirection:'row',alignItems:'center',justifyContent:'center',display:'flex'}}>
@@ -75,4 +78,4 @@ const styles = StyleSheet.create({
   }
   
     });
-export default chitietkhoanchi;
+export default chitietkhoanthu;

@@ -19,6 +19,7 @@ const thongke = (props,{navigation,route}) => {
    const [ptt,setptt] = useState('');
    const [ptcl,setptcl] = useState('');
    const [tienchi,settienchi] = useState('');
+   const [tienthu,settienthu] = useState('');
    const data = {
     actual:[
      { x: 'x', y: 10 }, { x: 'y', y: 12 }, { x: 'z', y: 5 }
@@ -28,6 +29,11 @@ const thongke = (props,{navigation,route}) => {
   {
       return props.navigation.navigate('chitietkhoanchi',{tienchi,userd});
   }
+  const ctkc2=()=>
+  {
+      return props.navigation.navigate('chitietkhoathu',{tienthu,userd});
+  }
+  
    const Them=()=>
    {
    var tienTV;
@@ -69,6 +75,7 @@ const thongke = (props,{navigation,route}) => {
        // Alert.alert(c.toString());
        cc2 +=Number(c);
         setthu("\nTổng Khoản thu :"+cc2);
+        settienthu(cc2);
         pt2 =(Number(cc2) / Number(tienn) * 100).toFixed(3);
         var cl = 100 - Number(pt) - Number(pt2);
         setptcl(cl);
@@ -103,7 +110,7 @@ const thongke = (props,{navigation,route}) => {
               Xem chi tiết khoản chi
             </Text>
           </Button>
-          <Button block onPress={Them} style={{...styles.button}}>
+          <Button block onPress={ctkc2} style={{...styles.button}}>
             <Text style={{color: '#fff', fontWeight: '450', fontSize: 14}}>
               Xem chi tiết khoản thu
             </Text>

@@ -1,18 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text,  Alert,ImageBackground, ScrollView } from 'react-native';
-import {Button, Form,Item, Input, Label} from 'native-base';
-import LinearGradient from 'react-native-linear-gradient';
-import {LoginApp} from '../../store/actions/transactionAction';
-
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
-import auth from '@react-native-firebase/auth';
 const chitietkhoanthu = (props,{navigation}) => 
 {
   
     const dispatch = useDispatch();
-    const [username, setUsername] = useState('t@gmail.com');
-    const [password, setPassword] = useState('123456789');
+
     const [userid,setuserid] = useState('');
     const [userd, setuserd] = useState(props.dataFromParent);
     const [tienthu,settienthu] = useState(props.k1);

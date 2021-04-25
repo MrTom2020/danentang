@@ -3,7 +3,6 @@ import {View, Text, FlatList, Alert} from 'react-native';
 import Animated from 'react-native-reanimated';
 import {Container, ListItem, CheckBox, Body, Right,Left} from 'native-base';
 import Card from '../Component/Thongke/thongke';
-import Empty from './Parts/Empty';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteTransaction} from '../store/actions/transactionAction';
 import {getDatabase,firebaseApp,ref, onChildAdded, onChildChanged, onChildRemoved} from './firebase';

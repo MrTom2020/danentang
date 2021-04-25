@@ -15,7 +15,6 @@ const sign = ({navigation,route}) =>
     const [password, setPassword] = useState('123456789');
     const [userid,setuserid] = useState('');
     const [userd, setuserd] = useState('');
-    var ss = firebaseApp.database().ref('lili');
     const onSubmit = () => 
     {
       if(!username || !password)

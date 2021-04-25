@@ -3,7 +3,6 @@ import {StyleSheet, View, Text, Alert, ScrollView} from 'react-native';
 import {Button, Form,Item, Input, Label, CheckBox} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import DateTimePicker2 from '@react-native-community/datetimepicker';
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
 const khoanthuchi = (props,{navigation}) => 

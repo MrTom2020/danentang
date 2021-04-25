@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text,  Alert,ImageBackground, ScrollView } from 'react-native';
-import {Button, Form,Item, Input, Label} from 'native-base';
-import LinearGradient from 'react-native-linear-gradient';
-import {LoginApp} from '../../store/actions/transactionAction';
-
 import {useDispatch} from 'react-redux';
 import {firebaseApp} from '../firebase.js';
-import auth from '@react-native-firebase/auth';
 const chitietkhoanchi = (props,{navigation}) => 
 {
   
@@ -15,7 +10,6 @@ const chitietkhoanchi = (props,{navigation}) =>
     const [password, setPassword] = useState('123456789');
     const [userid,setuserid] = useState('');
     const [userd, setuserd] = useState(props.dataFromParent);
-    var ss = firebaseApp.database().ref('lili');
     const [tienchi,settienchi] = useState(props.k1);
     const [t,sett] = useState('');
     const Them=()=>

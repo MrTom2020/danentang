@@ -81,7 +81,7 @@ const thongke = (props,{navigation}) => {
       <View style={{...styles.Box}}>
       <Them/>
         <VictoryPie
-        padding={{top: 40, bottom: 60,left:10}}
+        padding={{top: 35, bottom: 60,left:10}}
         width={350} height={350}
          data={[
         { x: 1, y: ptc},
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
 
   },
   button:{
-    marginTop:'10%',
+    marginTop:'12%',
     marginHorizontal: 2,
     backgroundColor:'#333333',
      borderRadius: 15,

@@ -33,7 +33,7 @@ const thongke = (props,{navigation,route}) => {
   {
       return props.navigation.navigate('chitietkhoathu',{tienthu,userd});
   }
-  
+ 
    const Them=()=>
    {
    var tienTV;
@@ -41,17 +41,18 @@ const thongke = (props,{navigation,route}) => {
    var cc2 = 0;
    var pt,pt2;
    var tienn;
-   var ref3= firebaseApp.database().ref('users/' + userd + '/k3/k').child('ViTien');
-    ref3.once('value',(snapshot)=>
+   var ref1= firebaseApp.database().ref('users/' + userd + '/k3/k').child('ViTien');
+
+    ref1.once('value',(snapshot)=>
     {
       tienTV =snapshot.val();
       settientv(tienTV);
     });
     var ref= firebaseApp.database().ref('users/' + userd + '/k3').child('Khoanchi');
-    ref.on('child_added',(snapshot)=>
+    ref.once('child_added',(snapshot)=>
     {
-      var child = snapshot.key;
-      var child2= firebaseApp.database().ref('users/' + userd +'/k3/Khoanchi/' + child).child('Giatri');
+        var child = snapshot.key;
+        var child2= firebaseApp.database().ref('users/' + userd +'/k3/Khoanchi/' + child).child('Giatri');
      child2.once('child_added',(snapshot2)=>
       {
         var c = snapshot2.val();
@@ -61,18 +62,17 @@ const thongke = (props,{navigation,route}) => {
       });
     });
     tienn = tientv + cc;
-   // settientv(tienn);
+   settientv(tienn);
      pt =(Number(cc) / Number(tienn) * 100).toFixed(3);
      setttt("\nSố chi của bạn là "+cc.toString() + " chiếm :" +pt.toString() + "%");
     var ref2= firebaseApp.database().ref('users/' + userd + '/k3').child('khoanthu');
-    ref2.on('child_added',(snapshot)=>
+    ref2.once('child_added',(snapshot)=>
     {
       var child = snapshot.key;
       var child2= firebaseApp.database().ref('users/' + userd +'/k3/khoanthu/' + child).child('Giatri');
      child2.once('child_added',(snapshot2)=>
       {
         var c = snapshot2.val();
-       // Alert.alert(c.toString());
        cc2 +=Number(c);
         setthu("\nTổng Khoản thu :"+cc2);
         settienthu(cc2);
@@ -85,14 +85,18 @@ const thongke = (props,{navigation,route}) => {
         settiendt("\nTổng Số tiền doanh thu là " + cc2.toString() + " Chiếm " + pt2.toString() + "%");
       });
     });
-    return null;
+    return 1;
   }
  
 
   return (
     <ImageBackground source={require('../../../image/bbd.jpg')} style={{width:'110%',height:'100%',flexDirection:'column',alignItems:'center',justifyContent:'center',flexWrap:'wrap'}}>
+        <Button block onPress={Them} style={{...styles.button}}>
+            <Text style={{color: '#fff', fontWeight: '450', fontSize: 14}}>
+             Nhấn 2 lần để Cập nhật
+            </Text>
+          </Button>
       <View style={{...styles.Box}}>
-      <Them/>
         <VictoryPie
         padding={{top: 35, bottom: 60,left:10}}
         width={350} height={350}
@@ -102,7 +106,7 @@ const thongke = (props,{navigation,route}) => {
        { x: 3, y: ptt}
        ]}
           />
-      <Text style={{width:'100%',color:'#FAAD3D',backgroundColor:'#333333',borderRadius:10}}>{tt}{thu}{ttt}{conlai}{tiendt}{"\n"}1 : Tiền chi {"\n"}
+      <Text style={{width:'100%',color:'#FAAD3D',backgroundColor:'#333333',borderRadius:10}}>{tt}{thu}{ttt}{conlai}{tiendt}{tientv}{"\n"}1 : Tiền chi {"\n"}
       2:Tiền trong ví{"\n"}
       3:Tiền doanh thu</Text>
       <Button block onPress={ctkc} style={{...styles.button}}>

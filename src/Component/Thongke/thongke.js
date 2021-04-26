@@ -49,11 +49,11 @@ const thongke = (props,{navigation,route}) => {
       settientv(tienTV);
     });
     var ref= firebaseApp.database().ref('users/' + userd + '/k3').child('Khoanchi');
-    ref.once('child_added',(snapshot)=>
+    ref.on('child_added',(snapshot)=>
     {
         var child = snapshot.key;
         var child2= firebaseApp.database().ref('users/' + userd +'/k3/Khoanchi/' + child).child('Giatri');
-     child2.once('child_added',(snapshot2)=>
+     child2.on('child_added',(snapshot2)=>
       {
         var c = snapshot2.val();
        cc +=Number(c);
@@ -66,11 +66,11 @@ const thongke = (props,{navigation,route}) => {
      pt =(Number(cc) / Number(tienn) * 100).toFixed(3);
      setttt("\nSố chi của bạn là "+cc.toString() + " chiếm :" +pt.toString() + "%");
     var ref2= firebaseApp.database().ref('users/' + userd + '/k3').child('khoanthu');
-    ref2.once('child_added',(snapshot)=>
+    ref2.on('child_added',(snapshot)=>
     {
       var child = snapshot.key;
       var child2= firebaseApp.database().ref('users/' + userd +'/k3/khoanthu/' + child).child('Giatri');
-     child2.once('child_added',(snapshot2)=>
+     child2.on('child_added',(snapshot2)=>
       {
         var c = snapshot2.val();
        cc2 +=Number(c);
@@ -99,7 +99,7 @@ const thongke = (props,{navigation,route}) => {
       <View style={{...styles.Box}}>
         <VictoryPie
         padding={{top: 35, bottom: 60,left:10}}
-        width={350} height={350}
+        width={350} height={280}
          data={[
         { x: 1, y: ptc},
         { x: 2, y: ptcl },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
     backgroundColor:'#333333',
      borderRadius: 15,
-     width:160 ,
+     width:170 ,
      height:40,
      zIndex:1000
   }

@@ -10,11 +10,43 @@ const kq = (props,{navigation,route}) =>
     const [ten,setten] = useState(props.k1);
      const [gt,setgt] = useState(props.k2);
      const [st,setst] = useState(props.k3);
+     const [csgd,setcsgd] = useState(props.k4);
+     const [yte,setyte] = useState(props.k5);
+     const [anuong,setanuong]  = useState(props.k6);
+     const [dilai,setdilai] = useState(props.k7);
+     const [khac,setkhac] = useState(props.k8);
+     const [tien,settien] = useState('');
+     const [thangtc,setthangtc] = useState('');
+     const [thangbt,setthangbt] = useState('');
+     const [thangtn,setthangtn] = useState('');
+     const [tthangtc,settthangtc] = useState('');
+     const [tthangbt,settthangbt] = useState('');
+     const [tthangtn,settthangtn] = useState('');
+     const [userd,setuserd] = useState(props.dataFromParent);
+   
      const [d,setd] = useState('');
     const Them=()=>
     {
-        var sotien = (Number(gt)/Number(st)).toFixed(3);
-        setd(sotien);
+        var stgd = (Number(csgd)/100 * gt).toFixed(1);
+        var yt  = (Number(yte)/100 * gt).toFixed(1);
+        var au  = (Number(anuong)/100 * gt).toFixed(1);
+        var dl  = (Number(dilai)/100 * gt).toFixed(1);
+        var k  = (Number(khac)/100 * gt).toFixed(1);
+        var tienconlai =Number(gt) - Number(stgd) + Number(yt) + Number(au) + Number(dl) + Number(k);
+        settien(tienconlai);
+        var sothang = Math.round((Number(st) / Number(tienconlai)));
+        var sotn = Math.round(Number(sothang) - (Number(sothang) * 10 /100));
+        var sotbt = Number(sothang);
+        var sott = Math.round(Number(sothang) + (Number(sothang) * 10 /100));
+        var tsothang =(Number(st) / Number(sotn)).toFixed(1);
+        var tsotn = (Number(st) / Number(sotbt)).toFixed(1);
+        var tsotbt = (Number(st) / Number(sott)).toFixed(1);
+        setthangtc(sotn);
+        setthangbt(sotbt);
+        setthangtn(sott);
+        settthangtc(tsothang);
+        settthangbt(tsotn);
+        settthangtn(tsotbt);
         return null;
    }
    const ctkc=()=>
@@ -27,12 +59,13 @@ const kq = (props,{navigation,route}) =>
         <ScrollView style={styles.sc}>
       <ImageBackground source={require('../../../image/bbd.jpg')} style={{width:'110%',height:800,flexDirection:'row',alignItems:'center',justifyContent:'center',display:'flex'}}>
          <View style={styles.Box}>
-             <Text><Them/>Tên kế hoạch : {ten}{"\nSố tháng tiết kiệm: "}{st}{"\nSố tiền của bạn phải tiết kiệm là : "}{d}VNĐ</Text>
-             <Button block onPress={ctkc} style={{...styles.button}}>
-            <Text style={{color: '#fff', fontWeight: '450', fontSize: 14}}>
-              Kế hoạch nâng cao
-            </Text>
-          </Button>
+             <Text><Them/>Tên kế hoạch : {ten}
+             {"\nSố tiền bạn phải tiết kiệm là : "}{st}
+             {"\nSố tháng tiết kiệm theo điều kiện tốt nhất: "}{thangtc}{"\n"}{tthangtc}{"/tháng"}
+             {"\nSố tháng tiết kiệm theo điều kiện bình thường: "}{thangbt}{"\n"}{tthangbt}{"/tháng"}
+             {"\nSố tháng tiết kiệm theo điều kiện tồi tệ nhất: "}{thangtn}{"\n"}{tthangtn}{"/tháng"}
+             {"\n\n\n*Số liệu dựa theo điều kiện kin tế khó khăn kinh tế trong mùa dịch "}
+             </Text>
        </View>
         </ImageBackground>
         </ScrollView>
@@ -43,7 +76,7 @@ const kq = (props,{navigation,route}) =>
 const styles = StyleSheet.create({
         Box: {
             width: '90%',
-            height: 200,
+            height: 240,
             borderRadius: 10,
             flexDirection: 'row',
             marginLeft:'-8%',
@@ -53,16 +86,6 @@ const styles = StyleSheet.create({
   sc:{
       width: 380,
       height: 800
-  },
-  button:{
-    marginTop:'22%',
-    marginLeft:'-40%',
-    marginHorizontal: 2,
-    backgroundColor:'#333333',
-     borderRadius: 15,
-     width:160 ,
-     height:40,
-     zIndex:1000
   }
   
     });

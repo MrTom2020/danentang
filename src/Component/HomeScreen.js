@@ -12,7 +12,7 @@ const HomeScreen = ({ navigation,route }) =>
   const [userd,setuserd] = useState(route.params.userd);
   return (
     
-    <Container>
+    <Container style={{backgroundColor:'#333333'}}>
       <Animated.View
         style={{
           flex: 1,

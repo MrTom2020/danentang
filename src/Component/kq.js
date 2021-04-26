@@ -11,7 +11,13 @@ const kq = ({ navigation,route }) =>
   const [ten,setten] = useState(route.params.ten);
   const [gt,setgt] = useState(route.params.gt);
   const [st,setst] = useState(route.params.st);
+  const [csgd,setcsgd] = useState(route.params.csgd);
+  const [yte,setyte] = useState(route.params.yte);
+  const [anuong,setanuong]  = useState(route.params.anuong);
+  const [dilai,setdilai] = useState(route.params.dilai);
+  const [khac,setkhac] = useState(route.params.khac);
   const [userd,setuserd] = useState(route.params.userd);
+
   return (
     
     <Container>
@@ -22,7 +28,7 @@ const kq = ({ navigation,route }) =>
           paddingHorizontal: 20,
           paddingVertical: 10,
         }}>
-        <Card dataFromParent={userd}k1={ten}k2={gt}k3={st}navigation={navigation}  />
+        <Card dataFromParent={userd}k1={ten}k2={gt}k3={st}k4={csgd}k5={yte}k6={anuong}k7={dilai}k8={khac}navigation={navigation}  />
       </Animated.View>
 
     </Container>
